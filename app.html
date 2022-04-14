@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>APP NAME: Coding Challenge By Charles Hall</title>
+    <title>SuperDog Events: Coding Challenge By Charles Hall</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,9 +31,8 @@
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-black">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/img/favicon-32x32.png" rel="Personal Mark"
-                    class="d-inline-block align-text-top me-2">APP
-                NAME</a>
+            <a class="navbar-brand" href="index.html"><img src="/img/favicon-32x32.png" rel="Personal Mark"
+                    class="d-inline-block align-text-top me-2">SuperDog Events!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,7 +49,7 @@
                         <a class="nav-link" href="/code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">The Repo</a>
+                        <a class="nav-link" href="https://github.com/WebDevCharles/SuperDog">The Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -62,23 +61,65 @@
 
     <main class="flex-shrink-0">
         <div class="container mt-5">
-            <h1>To Do List:</h1>
-            <div class="row align-items-end">
-                <div class="col">
-                    <label for="txtMessage" class="form-label">Item</label>
-                    <input type="text" class="form-control" id="txtMessage" name="txtMessage" placeholder="Enter Item">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <div class="dropdown py-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="eventDropDown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Choose A Location
+                        </button>
+                        <ul class="dropdown-menu" id="eventDropDownList" aria-labelledby="eventDropDown">
+                            <!-- City Date Goes Here -->
+                        </ul>
+                    </div>
+                    <table class="table table-striped mt-2">
+                        <tr>
+                            <th colspan="2" id="statsHeader">Stats For All Events:</th>
+                        </tr>
+                        <tr>
+                            <td>Total Attendance:</td>
+                            <td id="total">100</td>
+                        </tr>
+                        <tr>
+                            <td>Average Attendance:</td>
+                            <td id="average">100</td>
+                        </tr>
+                        <tr>
+                            <td>Most Attended:</td>
+                            <td id="most">100</td>
+                        </tr>
+                        <tr>
+                            <td>Least Attended:</td>
+                            <td id="least">100</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="col">
-                    <button id="btnSubmit" class="btn btn-primary">Add</button>
+                <div class="col-12 col-md-4 order-first order-md-2">
+                    <img src="/img/Superdog_600.png" class="img-fluid border border-dark">
                 </div>
             </div>
-            <div class="messageStyle mt-5">
-                <ol id="results" class="list-group list-group-numbered">
-
-                </ol>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addCustomEvent">Add New Event</button>
+                    <table class="table table-striped" id="eventData">
+                        <thead>
+                            <tr>
+                                <th>Event Name:</th>
+                                <th>City:</th>
+                                <th>State:</th>
+                                <th>Attendance:</th>
+                                <th>Event Date:</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventBody">
+                            <!-- Data Goes Here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
+
     <footer class="footer mt-auto py-3 bg-black sticky-footer">
         <div class="container-fluid">
             <div class="row row-cols-1 row-cols-lg-3 gy-2">
@@ -105,6 +146,116 @@
         </div>
     </footer>
 
+    <div class="modal" id="addCustomEvent" tabindex="-1" aria-labelledby="Add Event" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add A New Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="newEventForm" onsubmit="saveEventData();">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newEventName">Event Name:</label>
+                            <input id="newEventName" type="text" class="form-control" placeholder="Event Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventCity">City:</label>
+                            <input id="newEventCity" type="text" class="form-control" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventState">State:</label>
+                            <select class="form-control" id="newEventState" required>
+                                <option value="">Select A State:</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventAttendance">Attendance:</label>
+                            <input id="newEventAttendance" type="number" class="form-control" placeholder="Attendance">
+                        </div>
+                        <div class="form-group">
+                            <label for="newEventDate">Date:</label>
+                            <input id="newEventDate" type="date" class="form-control" placeholder="Event Date">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-secondary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template for "eventBody" -->
+    <template id="eventData-template">
+        <tr>
+            <td data-id="eventName"></td>
+            <td data-id="city"></td>
+            <td data-id="state"></td>
+            <td data-id="attendance"></td>
+            <td data-id="eventDate"></td>
+        </tr>
+    </template>
+
+    <template id="dropDown-template">
+        <li>
+            <a class="dropdown-item" onclick="getEventData(this)" href="#"></a>
+        </li>
+    </template>
+
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
@@ -112,9 +263,14 @@
 
     <!-- Custom JS -->
     <script src="/js/site.js"></script>
+
     <script>
-        document.getElementById("btnSubmit").addEventListener("click", getMessage);
+        window.onload = (event) => {
+            buildDropDown();
+        };
     </script>
+
+
 
 </body>
 
